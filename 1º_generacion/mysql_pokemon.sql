@@ -1,5 +1,27 @@
 use pokemondb;
 
+/*Borrado de tablas*/
+
+drop table if exists MO;
+drop table if exists MT;
+drop table if exists nivel_aprendizaje;
+drop table if exists pokemon_tipo;
+drop table if exists piedra;
+drop table if exists tipo_piedra;
+drop table if exists tipo_forma_aprendizaje;
+drop table if exists tipo_evolucion;
+drop table if exists nivel_evolucion;
+drop table if exists pokemon_forma_evolucion;
+drop table if exists pokemon_movimiento_forma;
+drop table if exists forma_evolucion;
+drop table if exists forma_aprendizaje;
+drop table if exists movimiento;
+drop table if exists tipo;
+drop table if exists tipo_ataque;
+drop table if exists tipo_forma_aprendizaje;
+drop table if exists estadisticas_base;
+drop table if exists pokemon;
+
 
 /*Tablas*/
 
@@ -50,9 +72,11 @@ Create table if not exists movimiento  (
     nombre varchar(20),
     potencia int,
     precision_mov int,
-    descripcion varchar(80),
+    descripcion varchar(500),
     pp int,
-    efecto_secundario varchar(15)
+    efecto_secundario varchar(45),
+    id_tipo int,
+    foreign key (id_tipo) references tipo(id_tipo)
 
 );
 
@@ -157,136 +181,6 @@ insert into tipo values (12, 'Roca', 1);
 insert into tipo values (13, 'Tierra', 1);
 insert into tipo values (14, 'Veneno', 1);
 insert into tipo values (15, 'Volador', 1);
-
-/*Tipos de aprendizaje*/
-insert into tipo_forma_aprendizaje values(1, 'MT');
-insert into tipo_forma_aprendizaje values(2, 'MO');
-insert into tipo_forma_aprendizaje values(3, 'Nivel');
-
-/*Forma aprendizaje*/
-insert into forma_aprendizaje values(1, 1);
-insert into forma_aprendizaje values(2, 1);
-insert into forma_aprendizaje values(3, 1);
-insert into forma_aprendizaje values(4, 1);
-insert into forma_aprendizaje values(5, 1);
-insert into forma_aprendizaje values(6, 1);
-insert into forma_aprendizaje values(7, 1);
-insert into forma_aprendizaje values(8, 1);
-insert into forma_aprendizaje values(9, 1);
-insert into forma_aprendizaje values(10, 1);
-insert into forma_aprendizaje values(11, 1);
-insert into forma_aprendizaje values(12, 1);
-insert into forma_aprendizaje values(13, 1);
-insert into forma_aprendizaje values(14, 1);
-insert into forma_aprendizaje values(15, 1);
-insert into forma_aprendizaje values(16, 1);
-insert into forma_aprendizaje values(17, 1);
-insert into forma_aprendizaje values(18, 1);
-insert into forma_aprendizaje values(19, 1);
-insert into forma_aprendizaje values(20, 1);
-insert into forma_aprendizaje values(21, 1);
-insert into forma_aprendizaje values(22, 1);
-insert into forma_aprendizaje values(23, 1);
-insert into forma_aprendizaje values(24, 1);
-insert into forma_aprendizaje values(25, 1);
-insert into forma_aprendizaje values(26, 1);
-insert into forma_aprendizaje values(27, 1);
-insert into forma_aprendizaje values(28, 1);
-insert into forma_aprendizaje values(29, 1);
-insert into forma_aprendizaje values(30, 1);
-insert into forma_aprendizaje values(31, 1);
-insert into forma_aprendizaje values(32, 1);
-insert into forma_aprendizaje values(33, 1);
-insert into forma_aprendizaje values(34, 1);
-insert into forma_aprendizaje values(35, 1);
-insert into forma_aprendizaje values(36, 1);
-insert into forma_aprendizaje values(37, 1);
-insert into forma_aprendizaje values(38, 1);
-insert into forma_aprendizaje values(39, 1);
-insert into forma_aprendizaje values(40, 1);
-insert into forma_aprendizaje values(41, 1);
-insert into forma_aprendizaje values(42, 1);
-insert into forma_aprendizaje values(43, 1);
-insert into forma_aprendizaje values(44, 1);
-insert into forma_aprendizaje values(45, 1);
-insert into forma_aprendizaje values(46, 1);
-insert into forma_aprendizaje values(47, 1);
-insert into forma_aprendizaje values(48, 1);
-insert into forma_aprendizaje values(49, 1);
-insert into forma_aprendizaje values(50, 1);
-
-insert into forma_aprendizaje values(51, 2);
-insert into forma_aprendizaje values(52, 2);
-insert into forma_aprendizaje values(53, 2);
-insert into forma_aprendizaje values(54, 2);
-insert into forma_aprendizaje values(55, 2);
-
-insert into forma_aprendizaje values(56, 3);
-
-
-/*MT*/
-
-insert into MT values(1, 'MT01');
-insert into MT values(2, 'MT02');
-insert into MT values(3, 'MT03');
-insert into MT values(4, 'MT04');
-insert into MT values(5, 'MT05');
-insert into MT values(6, 'MT06');
-insert into MT values(7, 'MT07');
-insert into MT values(8, 'MT08');
-insert into MT values(9, 'MT09');
-insert into MT values(10, 'MT10');
-insert into MT values(11, 'MT11');
-insert into MT values(12, 'MT12');
-insert into MT values(13, 'MT13');
-insert into MT values(14, 'MT14');
-insert into MT values(15, 'MT15');
-insert into MT values(16, 'MT16');
-insert into MT values(17, 'MT17');
-insert into MT values(18, 'MT18');
-insert into MT values(19, 'MT19');
-insert into MT values(20, 'MT20');
-insert into MT values(21, 'MT21');
-insert into MT values(22, 'MT22');
-insert into MT values(23, 'MT23');
-insert into MT values(24, 'MT24');
-insert into MT values(25, 'MT25');
-insert into MT values(26, 'MT26');
-insert into MT values(27, 'MT27');
-insert into MT values(28, 'MT28');
-insert into MT values(29, 'MT29');
-insert into MT values(30, 'MT30');
-insert into MT values(31, 'MT31');
-insert into MT values(32, 'MT32');
-insert into MT values(33, 'MT33');
-insert into MT values(34, 'MT34');
-insert into MT values(35, 'MT35');
-insert into MT values(36, 'MT36');
-insert into MT values(37, 'MT37');
-insert into MT values(38, 'MT38');
-insert into MT values(39, 'MT39');
-insert into MT values(40, 'MT40');
-insert into MT values(41, 'MT41');
-insert into MT values(42, 'MT42');
-insert into MT values(43, 'MT43');
-insert into MT values(44, 'MT44');
-insert into MT values(45, 'MT45');
-insert into MT values(46, 'MT46');
-insert into MT values(47, 'MT47');
-insert into MT values(48, 'MT48');
-insert into MT values(49, 'MT49');
-insert into MT values(50, 'MT50');
-
-/*MO*/
-insert into MO values(51, 'MO01');
-insert into MO values(52, 'MO02');
-insert into MO values(53, 'MO03');
-insert into MO values(54, 'MO04');
-insert into MO values(55, 'MO05');
-
-/*Nivel*/
-
-insert into nivel_aprendizaje values(56, 1);
 
 /*Pokemon*/
 
@@ -817,6 +711,8 @@ insert into estadisticas_base values (151,100, 100,100,100,100);
 insert into tipo_piedra values (1,'Piedra trueno');
 insert into tipo_piedra values (2,'Piedra fuego');
 insert into tipo_piedra values (3,'Piedra agua');
+insert into tipo_piedra values (4,'Piedra lunar');
+insert into tipo_piedra values (5,'Piedra hoja');
 
 
 /*Tipo evolucion*/
@@ -836,12 +732,35 @@ insert into forma_evolucion values (6, 2);
 insert into forma_evolucion values (7, 2);
 insert into forma_evolucion values (8, 2);
 insert into forma_evolucion values (9, 2);
+insert into forma_evolucion values (10, 2);
+insert into forma_evolucion values (11, 2);
+insert into forma_evolucion values (12, 2);
+insert into forma_evolucion values (13, 1);
+insert into forma_evolucion values (14, 2);
+insert into forma_evolucion values (15, 1);
+insert into forma_evolucion values (16, 2);
+insert into forma_evolucion values (17, 2);
+insert into forma_evolucion values (18, 2);
+insert into forma_evolucion values (19, 2);
+insert into forma_evolucion values (20, 2);
+insert into forma_evolucion values (21, 2);
+insert into forma_evolucion values (22, 2);
+insert into forma_evolucion values (23, 2);
+insert into forma_evolucion values (24, 2);
+insert into forma_evolucion values (25, 2);
+insert into forma_evolucion values (26, 2);
+insert into forma_evolucion values (27, 2);
+insert into forma_evolucion values (28, 2);
+insert into forma_evolucion values (29, 2);
+
 
 /*Formas de evolucion piedras*/
 
 insert into piedra values (2, 1);
 insert into piedra values (3, 2);
 insert into piedra values (4, 3);
+insert into piedra values (13, 4);
+insert into piedra values (15, 5);
 
 /*Formas de evolucion nivel*/
 
@@ -852,25 +771,522 @@ insert into nivel_evolucion values (8, 18);
 insert into nivel_evolucion values (9, 20);
 insert into nivel_evolucion values (10, 22);
 insert into nivel_evolucion values (11, 32);
-insert into nivel_evolucion values (12, 16);
+insert into nivel_evolucion values (12, 36);
+insert into nivel_evolucion values (14, 21);
+insert into nivel_evolucion values (16, 24);
+insert into nivel_evolucion values (17, 31);
+insert into nivel_evolucion values (18, 26);
+insert into nivel_evolucion values (19, 28);
+insert into nivel_evolucion values (20, 33);
+insert into nivel_evolucion values (21, 25);
+insert into nivel_evolucion values (22, 30);
+insert into nivel_evolucion values (23, 40);
+insert into nivel_evolucion values (24, 37);
+insert into nivel_evolucion values (25, 34);
+insert into nivel_evolucion values (26, 38);
+insert into nivel_evolucion values (27, 35);
+insert into nivel_evolucion values (28, 42);
+insert into nivel_evolucion values (29, 55);
 
 /*Formas de evolucion pokemon*/
 
-insert into pokemon_forma_evolucion values (1, 5);
+insert into pokemon_forma_evolucion values (1, 7);
 insert into pokemon_forma_evolucion values (2, 11);
+insert into pokemon_forma_evolucion values (4, 7);
+insert into pokemon_forma_evolucion values (5, 12);
+insert into pokemon_forma_evolucion values (7, 7);
+insert into pokemon_forma_evolucion values (8, 12);
+insert into pokemon_forma_evolucion values (10, 5);
+insert into pokemon_forma_evolucion values (11, 6);
+insert into pokemon_forma_evolucion values (13, 5);
+insert into pokemon_forma_evolucion values (14, 6);
+insert into pokemon_forma_evolucion values (16, 8);
+insert into pokemon_forma_evolucion values (17, 12);
+insert into pokemon_forma_evolucion values (19, 9);
+insert into pokemon_forma_evolucion values (21, 9);
+insert into pokemon_forma_evolucion values (13, 10);
+insert into pokemon_forma_evolucion values (25, 2);
+insert into pokemon_forma_evolucion values (27, 10);
+insert into pokemon_forma_evolucion values (29, 8);
+insert into pokemon_forma_evolucion values (30, 13);
+insert into pokemon_forma_evolucion values (32, 8);
+insert into pokemon_forma_evolucion values (33, 13);
+insert into pokemon_forma_evolucion values (35, 13);
+insert into pokemon_forma_evolucion values (37, 3);
+insert into pokemon_forma_evolucion values (39, 13);
+insert into pokemon_forma_evolucion values (41, 10);
+insert into pokemon_forma_evolucion values (43, 14);
+insert into pokemon_forma_evolucion values (44, 15);
+insert into pokemon_forma_evolucion values (46, 16);
+insert into pokemon_forma_evolucion values (48, 17);
+insert into pokemon_forma_evolucion values (50, 18);
+insert into pokemon_forma_evolucion values (52, 19);
+insert into pokemon_forma_evolucion values (54, 20);
+insert into pokemon_forma_evolucion values (56, 19);
+insert into pokemon_forma_evolucion values (58, 3);
+insert into pokemon_forma_evolucion values (60, 21);
+insert into pokemon_forma_evolucion values (61, 4);
+insert into pokemon_forma_evolucion values (63, 7);
+insert into pokemon_forma_evolucion values (64, 1);
+insert into pokemon_forma_evolucion values (66, 19);
+insert into pokemon_forma_evolucion values (67, 1);
+insert into pokemon_forma_evolucion values (69, 14);
+insert into pokemon_forma_evolucion values (70, 15);
+insert into pokemon_forma_evolucion values (72, 22);
+insert into pokemon_forma_evolucion values (74, 21);
+insert into pokemon_forma_evolucion values (75, 1);
+insert into pokemon_forma_evolucion values (77, 23);
+insert into pokemon_forma_evolucion values (79, 24);
+insert into pokemon_forma_evolucion values (81, 22);
+insert into pokemon_forma_evolucion values (84, 17);
+insert into pokemon_forma_evolucion values (86, 25);
+insert into pokemon_forma_evolucion values (88, 26);
+insert into pokemon_forma_evolucion values (90, 4);
+insert into pokemon_forma_evolucion values (92, 21);
+insert into pokemon_forma_evolucion values (93, 1);
+insert into pokemon_forma_evolucion values (96, 18);
+insert into pokemon_forma_evolucion values (98, 19);
+insert into pokemon_forma_evolucion values (100, 22);
+insert into pokemon_forma_evolucion values (102, 15);
+insert into pokemon_forma_evolucion values (104, 19);
+insert into pokemon_forma_evolucion values (109, 27);
+insert into pokemon_forma_evolucion values (111, 28);
+insert into pokemon_forma_evolucion values (116, 11);
+insert into pokemon_forma_evolucion values (118, 20);
+insert into pokemon_forma_evolucion values (120, 4);
+insert into pokemon_forma_evolucion values (129, 9);
+insert into pokemon_forma_evolucion values (133, 2);
+insert into pokemon_forma_evolucion values (133, 3);
+insert into pokemon_forma_evolucion values (133, 4);
+insert into pokemon_forma_evolucion values (138, 23);
+insert into pokemon_forma_evolucion values (140, 23);
+insert into pokemon_forma_evolucion values (147, 22);
+insert into pokemon_forma_evolucion values (148, 29);
+
+/*Movimientos*/
+
+insert into movimiento values(1, 'Placaje', 40, 100, 'Causa daño', 35, null, 9);
+insert into movimiento values(2, 'Danza espada', 0, 100, 'Aumenta en dos niveles el ataque del usuario', 30, 'Subir ataque', 9);
+insert into movimiento values(3, 'Burbuja', 20, 100, 'Causa daño y tiene una probabilidad del 10% de bajar la velocidad', 30, 'Bajar velocidad', 1);
+insert into movimiento values(4, 'Cascada', 80, 100, 'Causa daño', 15, null, 1);
+insert into movimiento values(5, 'Hidrobomba', 120, 80, 'Causa daño', 5, null, 1);
+insert into movimiento values(6, 'Martillazo', 90, 85, 'Causa daño con probabilidad de dar golpe critico(12,5%)', 10, 'Probabilidad de critico', 1);
+insert into movimiento values(7, 'Pistola de agua', 40, 100, 'Causa daño', 25, null, 1);
+insert into movimiento values(8, 'Rayo burbuja', 65, 100, 'Causa daño y tiene una probabilidad del 10% de bajar la velocidad', 20, 'Bajar velocidad',1);
+insert into movimiento values(9, 'Refugio', 0, 100, 'Aumenta la defensa en un nivel', 40, 'Aumenta la defensa', 1);
+insert into movimiento values(10, 'Surf', 95, 100, 'Causa daño', 15, null,1);
+insert into movimiento values(11, 'Tenaza', 35, 75, 'Causa daño durante 2-5 turnos. Imposibilidad de atacar al objetivo', 15, null, 1);
+insert into movimiento values(12, 'Chupa vidas', 20, 100, 'Causa daño y recupera el 50% PS quitados' , 15, null, 2);
+insert into movimiento values(13, 'Disparo demora', 0, 95, 'Baja la velocidad del objetivo', 40, null,2);
+insert into movimiento values(14, 'Doble ataque', 25, 100, 'Causa daño golpeando dos veces. Cada golpe tiene un 20% de probabilidad de envenenar.', 20, 'Envenenar',2);
+insert into movimiento values(15, 'Pin misil', 14, 85, 'Causa daño al objetivo de 2 a 5 veces', 20, null, 2);
+insert into movimiento values(16, 'Furia dragón', 0, 100, 'Quita siempre 40 PS al obejtivo', 10, null, 3);
+insert into movimiento values(17, 'Impactrueno', 40, 100, 'Causa daño y tiene una probabilidad del 10% de paralizar el objetivo.', 30, 'Paraliza el objetivo', 4);
+insert into movimiento values(18, 'Onda trueno', 0, 100, 'Paraliza el objetivo', 20, null,4);
+insert into movimiento values(19, 'Puño trueno', 75, 100, 'Causa daño y tiene un 10% de paralizar el objetivo', 35, 'Paraliza el objetivo', 4);
+insert into movimiento values(20, 'Rayo', 95, 100, 'Causa daño y tiene un 10% de paralizar el objetivo', 15,'Paraliza el objetivo', 4);
+insert into movimiento values(21, 'Trueno', 120, 70, 'Causa daño y tiene un 10% de paralizar el objetivo', 10, 'Paraliza el objetivo', 4);
+insert into movimiento values(22, 'Impactrueno', 40, 100, 'Causa daño y tiene una probabilidad del 10% de paralizar el objetivo.', 30, 'Paraliza el objetivo', 4);
+insert into movimiento values(23, 'Lenguetazo', 20, 100, 'Causa daño y tiene un 30% de paralizar el objetivo', 30, 'Paraliza el objetivo', 5);
+insert into movimiento values(24, 'Rayo confuso', 0, 100, 'Confunde al objetivo', 10, null, 5);
+insert into movimiento values(25, 'Tinieblas', 0, 100, 'Resta la cantidad de PS equivalentes al nivel de usuario', 15,null, 5);
+insert into movimiento values(26, 'Ascuas', 40, 100, 'Causa daño y tiene una probabilidad del 10% de quemar al objetivo', 25, 'Quema al objetivo', 6);
+insert into movimiento values(27, 'Giro fuego', 15, 100, 'Causa dañó de 2 a 5 turnos. Imposibilidad de atacar al objetivo', 15, null, 6);
+insert into movimiento values(28, 'Lanzallamas', 95, 100, 'Causa daño y tiene una probabilidad del 10% de quemar al objetivo', 15, 'Quema al objetivo', 6);
+insert into movimiento values(29, 'Llamarada', 120, 85, 'Causa daño y tiene una probabilidad del 30% de quemar al objetivo', 5, 'Quema al objetivo', 6);
+insert into movimiento values(30, 'Puño fuego', 75, 100, 'Causa daño y tiene una probabilidad del 10% de quemar al objetivo', 15,'Quema al objetivo', 4);
+insert into movimiento values(31, 'Neblina', 0, 0, 'Neblina evita durante 5 turnos otros pokemon puedan reducir las estadisiticas del equipo aliado', 30, null, 7);
+insert into movimiento values(32, 'Niebla', 0, 0, 'Restaura todos los cambios, tantos positivos como negativos, en las estadisitcas de todos los pokemon.', 30, null, 7);
+insert into movimiento values(33, 'Puño hielo', 75, 100, 'Causa daño y tiene una probabilidad del 10% de congelar al objetivo', 15, 'Congelar el objetivo', 7);
+insert into movimiento values(34, 'Rayo aurora', 65, 100, 'Causa daño y tiene un 10% de bajar un nivel el ataque del objetivo', 20, 'Bajar ataque', 7);
+insert into movimiento values(35, 'Rayo hielo', 95, 100, 'Causa daño y tiene una probabilidad del 10% de congelar al objetivo', 10,'Congelar el objetivo', 7);
+insert into movimiento values(36, 'Ventisca', 120, 90, 'Causa daño y tiene una probabilidad del 10% de congelar al objetivo', 5, 'Congelar el objetivo', 7);
+insert into movimiento values(37, 'Contraataque', 0, 100, 'Devuelve el doble daño recibido si es un físico', 20, null, 8);
+insert into movimiento values(38, 'Doble patada', 30, 100, 'Causa daño, golpeando 2 veces en un mismo turno', 30, null, 8);
+insert into movimiento values(39, 'Movimiento sísmico', 0, 100, 'Resta la cantidad de PS equivalentes al nivel de usuario', 20, null, 8);
+insert into movimiento values(40, 'Patada baja', 50, 90, 'Causa daño y tiene del 30% de retroceder al objetivo', 20,'Retroceder al objetivo', 8);
+insert into movimiento values(41, 'Patada giro', 60, 85, 'Causa daño y tiene del 30% de retroceder al objetivo', 15, 'Retroceder al objetivo', 8);
+insert into movimiento values(42, 'Patada salto', 70, 100, 'Causa daño. Si falla, el usuario se golpea a si mismo restandole 1 PS.', 25, null, 8);
+insert into movimiento values(43, 'Patada salto alta', 85, 90, 'Causa daño. Si falla, el usuario se golpea a si mismo restandole 1 PS.', 20, null, 8);
+insert into movimiento values(44, 'Sumisión', 80, 80, 'Causa daño. Causa daño de retroceso al usuario de 1/4 del daño causado.', 20, null, 8);
+insert into movimiento values(45, 'Afilar', 0, 100, 'sube el ataque del usuario en un nivel', 30, null, 9);
+insert into movimiento values(46, 'Agarre', 55, 100, 'Causa daño.', 30, null, 9);
+insert into movimiento values(47, 'Amortiguador', 0, 0, 'Restaura la mitad de los PS máximos del usuario', 10, null, 9);
+insert into movimiento values(48, 'Anulación', 0, 55, 'Anula un movimiento del objetivo', 20, null, 9);
+insert into movimiento values(49, 'Arañazo', 40, 100, 'Causa daño.', 35, null, 9);
+insert into movimiento values(50, 'Atadura', 15, 75, 'Causa daño de 2 a 5 turnos. Imposibilidad de atacar al objetivo', 20, null, 9);
+insert into movimiento values(51, 'Ataque arena', 0, 100, 'Baja la precisión en un nivel.', 15, null, 9);
+insert into movimiento values(52, 'Ataque furia', 15, 85, 'Causa daño de 2 a 5 turnos.', 20, null, 9);
+insert into movimiento values(53, 'Ataque rápido', 40, 100, 'Causa daño.', 30, null, 9);
+insert into movimiento values(54, 'Autodestrucción', 130, 100, 'Causa daño y debilita al usuario.', 5, null, 9);
+insert into movimiento values(55, 'Beso amoroso', 0, 75, 'Duerme al obejtivo', 10, null, 9);
+insert into movimiento values(56, 'Bomba huevo', 100, 75, 'Causa daño', 10, null, 9);
+insert into movimiento values(57, 'Bomba sónica', 0, 90, 'siempre quita 20 PS', 20, null, 9);
+insert into movimiento values(58, 'Cabezazo', 100, 100, 'Se prepara durante el primer turno y ataca en el segundo', 15, null, 9);
+insert into movimiento values(59, 'Canto', 0, 55, 'Duerme al objetivo.', 15, null, 9);
+insert into movimiento values(60, 'Chirrido', 0, 85, 'Baja en dos niveles la defensa del objetivo.', 40, null, 9);
+insert into movimiento values(61, 'Clavo cañón', 20, 100, 'Causa daño de 2 a 5 turnos.', 15, null, 9);
+insert into movimiento values(62, 'Conversión', 0, 0, 'Cambia el tipo del usuario del oponente', 30, null, 9);
+insert into movimiento values(63, 'Cornada', 65, 100, 'Causa daño.', 25, null, 9);
+insert into movimiento values(64, 'Corte', 50, 100, 'Causa daño.', 30, null, 9);
+insert into movimiento values(65, 'Cuchillada', 70, 100, 'Causa daño y tiene una alta probabilidad de causar un golpe crítico (12,5%).', 20, null, 9);
+insert into movimiento values(66, 'Derribo', 90, 85, 'Causa daño. Causa daño de retroceso al usuario de 1/4 del daño causado ', 20, null, 9);
+insert into movimiento values(67, 'Desarrollo', 0, 0, 'Aumenta en un nivel el especial del usuario.', 40, null, 9);
+insert into movimiento values(68, 'Deslumbrar', 0, 100, 'Provoca paralisis al objetivo.', 30, null, 9);
+insert into movimiento values(69, 'Destello', 0, 100, 'Baja un nivel la precisición del oponente.', 20, null, 9);
+insert into movimiento values(70, 'Destructor', 40, 100, 'Causa daño.', 35, null, 9);
+insert into movimiento values(71, 'Día de pago', 40, 100, 'Causa daño. Se esparcen monedas que se recogen al final del combate', 20, null, 9);
+insert into movimiento values(72, 'Doble equipo', 0, 0, 'Aumenta en un nivel la evasión del usuario.', 15, null, 9);
+insert into movimiento values(73, 'Doble filo', 100, 100, 'Causa daño. Causa daño de retroceso al usuario de 1/4 del daño causado.', 15, null, 9);
+insert into movimiento values(74, 'Doblebofetón', 15, 85, 'Causa daño de 2 a 5 turnos.', 10, null, 9);
+insert into movimiento values(75, 'Explosión', 170, 100, 'Causa daño y debilita al usuario.', 5, null, 9);
+insert into movimiento values(76, 'Foco energía', 0, 0, 'Aumenta la probabilidad asestar golpes criticos.', 40, null, 9);
+insert into movimiento values(77, 'Fortaleza', 0, 0, 'Aumenta en un nivel la defensa del usuario.', 30, null, 9);
+insert into movimiento values(78, 'Fuerza', 80, 100, 'Causa daño.', 15, null, 9);
+insert into movimiento values(79, 'Furia', 20, 100, 'Causa daño. No puede cambiar de movimiento.', 20, null, 9);
+insert into movimiento values(80, 'Golpe', 90, 100, 'Causa daño entre 3 o 4 turnos seguidos. El usuario termina confundido.', 20, null, 9);
+insert into movimiento values(81, 'Golpe cabeza', 70, 100, 'Causa daño y tiene una probabilidad del 30% de hacer retroceder.', 15, 'Retroceder al objetivo', 9);
+insert into movimiento values(82, 'Golpe cuerpo', 85, 100, 'Causa daño y tiene una probabilidad del 30% de paralizar el objetivo.', 15, 'Paraliza el objetivo', 9);
+insert into movimiento values(83, 'Golpe kárate', 50, 100, 'Causa daño y tiene un alto índice de golpe crítico.', 25, null, 9);
+insert into movimiento values(84, 'Golpes furia', 50, 100, 'Causa daño de 2 a 5 turnos.', 15, null, 9);
+insert into movimiento values(85, 'Gruñido', 0, 100, 'Baja un nivel el ataque del objetivo.', 40, null, 9);
+insert into movimiento values(86, 'Guillotina', 0, 30, 'Si acierta, provoca KO en un turno.', 5, null, 9);
+insert into movimiento values(87, 'Hipercolmillo', 80, 90, 'Causa daño y tiene un una probabilidad del 10% de hacer retroceder al objetivo.', 15, null, 9);
+insert into movimiento values(88, 'Hiperrayo', 150, 90, 'Causa daño. No podra moverse en el segundo turno.', 5, null, 9);
+insert into movimiento values(89, 'Látigo', 0, 100, 'Baja en un nivel la defensa del oponente.', 30, null, 9);
+insert into movimiento values(90, 'Malicioso', 0, 100, 'Baja en un nivel la defensa del oponente.', 30, null, 9);
+insert into movimiento values(91, 'Megapatada', 120, 75, 'Causa daño.', 5, null, 9);
+insert into movimiento values(92, 'MegaPuño', 80, 85, 'Causa daño.', 20, null, 9);
+insert into movimiento values(93, 'Metrónomo', 0, 0, 'Utiliza un movimiento al azar.', 15, null, 9);
+insert into movimiento values(94, 'Mimético', 0, 0, 'Permite al usuario elegir uno de los movimientos del objetivo y copiarlo.', 25, null, 9);
+insert into movimiento values(95, 'Mordisco', 60, 100, 'Causa daño y tiene una probabilidad del 10% de hacer retroceder.', 25, 'Retroceder al objetivo', 9);
+insert into movimiento values(96, 'Pantalla de humo', 0, 100, 'Baja en un nivel la precisión del oponente.', 20, null, 9);
+insert into movimiento values(97, 'Perforador',0, 30, 'Si acierta, provoca KO en un turno.', 5, null, 9);
+insert into movimiento values(98, 'Pisotón', 65, 100, 'Causa daño y tiene una probabilidad del 30% de hacer retroceder.', 20, 'Retroceder al objetivo', 9);
+insert into movimiento values(99, 'Golpe kárate', 50, 100, 'Causa daño y tiene un alto índice de golpe crítico.', 25, null, 9);
+insert into movimiento values(100, 'Atizar', 80, 75, 'Causa daño.', 20, null, 9);
+insert into movimiento values(101, 'Presa', 50, 100, 'Causa daño de 2 a 5 turnos.', 20, null, 9);
+insert into movimiento values(102, 'Puño cometa', 18, 85, 'Causa daño de 2 a 5 turnos.', 15, null, 9);
+insert into movimiento values(103, 'Rapidez', 60, 0, 'Causa daño. No falla.', 20, null, 9);
+insert into movimiento values(104, 'Recuperación', 0, 0, 'Restaura la mitad de los PS máximos del usuario', 20, null, 9);
+insert into movimiento values(105, 'Reducción', 0, 0, 'Aumenta la evasión del usuario en un nivel.', 10, null, 9);
+insert into movimiento values(106, 'Remolino', 0, 85, 'Ahuyenta a los pokemon salvajes.', 20, null, 9);
+insert into movimiento values(107, 'Constricción', 15, 85, 'Causa daño de 2 a 5 turnos. Imposibilidad de atacar al objetivo', 20, null, 9);
+insert into movimiento values(108, 'Restricción', 10, 100, 'Causa daño y tiene una probabilidad del 10% de bajar un nivel la velocidad del oponente.', 35, 'Bajar velocidad', 9);
+insert into movimiento values(109, 'Rizo de defensa', 0, 100, 'Aumenta en un nivel la defensa del usuario.', 40, null, 9);
+insert into movimiento values(110, 'Rugido', 0, 0, 'Ahuyenta a los pokemon salvajes.', 20, null, 9);
+insert into movimiento values(111, 'Salpicadura', 0, 0, 'No tiene ningún efecto.', 40, null, 9);
+insert into movimiento values(112, 'Superdiente', 0, 90, 'Quita al objetivo la mitad de sus PS actuales.', 10, null, 9);
+insert into movimiento values(113, 'Supersónico', 0, 55, 'Confunde al objetivo.', 20, null, 9);
+insert into movimiento values(114, 'Sustituto', 0, 0, 'Crea un sustituo con el 25% de los PS maximos del usuario para que reciba el daño de los movimientos', 10, null, 9);
+insert into movimiento values(115, 'Tornado', 40, 100, 'Causa daño.', 35, null, 9);
+insert into movimiento values(116, 'Transformación', 0, 0, 'Convierte al usuario en el Pokémon objetivo, copiando su tipo, sus movimientos, habilidad, su ratio de captura, sus estadísticas y cambios en las mismas.', 10, null, 9);
+insert into movimiento values(117, 'Triataque', 80, 100, 'Causa daño. Tiene un 20% de provocar quemaduras, paralisis o congelación', 10, 'Quemar, paralizar, congelar al objetivo', 9);
+insert into movimiento values(118, 'Venganza', 0, 0, ' Hace que el usuario se mantenga inmóvil durante 2-3 turnos seguidos, sin poder realizar ninguna acción, para después devolver el doble del daño recibido. El movimiento falla si el usuario no resulta dañado por el enemigo.', 10, null, 9);
+insert into movimiento values(119, 'Viento cortante', 80, 75, 'carga en el primer turno que es efectuado, creando un remolino. En el segundo turno, causa daño.', 10, null, 9);
+insert into movimiento values(120, 'Absorber', 20, 100, 'Causa daño y el usuario recupera el 50% de los PS quitados por el movimiento al objetivo', 20, null, 10);
+insert into movimiento values(121, 'Danza pétalo', 70, 100, 'Causa daño entre 3 o 4 turnos seguidos. El usuario termina confundido.', 20, null, 10);
+insert into movimiento values(122, 'Drenadoras', 0, 90, 'Planta tres semillas en el oponente, las cuales le roban 1/16 de sus PS máximos al final de cada turno. El usuario recupera esa misma cantidad de PS. Si el usuario es cambiado, el Pokémon que pase a ocupar su lugar recibirá esos puntos de salud. El efecto se pasa al cambiar el Pokémon infectado por drenadoras. Drenadoras no afecta a Pokémon de tipo planta.', 10, null, 10);
+insert into movimiento values(123, 'Espora', 0, 100, 'Duerme al objetivo.', 15, null, 10);
+insert into movimiento values(124, 'Hoja afilada', 55, 95, 'Causa daño y tiene una alta probabilidad de dar un golpe crítico (12,5%).', 25, null, 10);
+insert into movimiento values(125, 'Látigo cepa', 35, 100, 'Causa daño.' , 25, null, 10);
+insert into movimiento values(126, 'Megaagotar', 45, 100, 'Causa daño y el usuario recupera el 50% de los PS quitados por el movimiento al objetivo', 15, null, 10);
+insert into movimiento values(127, 'Paralizador', 0, 75, 'Paraliza al objetivo', 30, null, 10);
+insert into movimiento values(128, 'Rayo solar', 120, 100, 'utiliza este movimiento concentra la energía solar un turno, para liberar un rayo que causa daño en el siguiente turno.', 10, null, 10);
+insert into movimiento values(129, 'Somnífero', 0, 75, 'Duerme al objetivo', 15, null, 10);
+insert into movimiento values(130, 'Agilidad', 0, 0, 'Sube en dos niveles la velocidad del usuario.', 30, null, 11);
+insert into movimiento values(131, 'Amnesia', 0, 0, 'Aumenta en dos niveles el especial del usuario', 20, null, 11);
+insert into movimiento values(132, 'Barrera', 0, 0, 'Aumneta en dos niveles la defensa del usuario.', 30, null, 11);
+insert into movimiento values(133, 'Comesueños', 100, 100, 'Causa daño a un objetivo dormido y el usuario recupera el 50% de los PS quitados por movimiento al objetivo.', 15, null, 11);
+insert into movimiento values(134, 'Confusión', 50, 100, 'Causa daño y tiene una probabilidad del 10% de confundir al objetivo.', 25, null, 11);
+insert into movimiento values(135, 'Descanso', 0, 0, 'hace que el usuario se duerma y recupere la totalidad de los PS, curando en el proceso cualquier problema de estado. El usuario después permanece dormido durante 2 turnos.', 10, null, 11);
+insert into movimiento values(136, 'Hipnosis', 0, 60, 'Duerme al objetivo.', 20, null, 11);
+insert into movimiento values(137, 'Kinético', 0, 80, 'Baja la precisión del objetivo en un nivel.', 15, null, 11);
+insert into movimiento values(138, 'Meditación', 0, 0, 'aumenta un nivel el ataque del usuario.', 40, null, 11);
+insert into movimiento values(139, 'Pantalla de luz', 0, 0, 'Dobla la defensa especial del usuario.', 30, null, 11);
+insert into movimiento values(140, 'Psicoonda', 0, 80, 'Causa un daño variable al oponente, elegido al azar de un número entre 0,5 y 1,5 veces el nivel del usuario.', 15, null, 11);
+insert into movimiento values(141, 'Psicorrayo', 65, 60, 'Causa daño y tiene una probabilidad del 10% de confundir al objetivo.', 20, 'Confundir al objetivo', 11);
+insert into movimiento values(142, 'Psíquico', 90, 100, 'Causa daño y tiene una probabilidad del 30% de bajar en un nivel el especial del objetivo.', 20, 'Bajar el especial', 11);
+insert into movimiento values(143, 'Reflejo', 0, 0, 'Dobla la defensa física del usuario.', 20, null, 11);
+insert into movimiento values(144, 'Teletransporte', 0, 0, 'Permite huir de combates individuales.', 20, null, 11);
+insert into movimiento values(145, 'Avalancha', 75, 90, 'Causa daño.', 10, null, 12);
+insert into movimiento values(146, 'Lanzarocas', 50, 65, 'Causa daño.', 15, null, 12);
+insert into movimiento values(147, 'Excavar', 100, 100, 'Cava en el primer turno y el segundo turno ataca.', 10, null, 13);
+insert into movimiento values(148, 'Fisura', 0, 30, 'Si acierta, provoca un golpe fulminante.', 5, null, 13);
+insert into movimiento values(149, 'Hueso palo', 65, 85, 'Causa daño y tiene una probabilidad del 10% de hacer retroceder al objetivo.', 20, null, 13);
+insert into movimiento values(150, 'Huesomerang', 50, 90, 'Causa daño, golpeando al objetivo en un mismo turno.', 10, null, 13);
+insert into movimiento values(151, 'Terremoto', 100, 100, 'Causa daño.', 10, null, 13);
+insert into movimiento values(152, 'Ácido', 40, 100, 'Causa daño y tiene una probabilidad deñ 10% de bajar un nivel la defensa del objetivo.', 30, 'Bajar el especial', 14);
+insert into movimiento values(153, 'Armadura ácida', 0, 0, 'Sube en dos niveles la defensa del usuario.', 20, null, 14);
+insert into movimiento values(154, 'Gas venenoso', 0, 55, 'Envenena al objetivo', 40, null, 14);
+insert into movimiento values(155, 'Picotazo venenoso', 15, 100, 'Causa daño y tiene una probabilidad del 30% de envenenar al oponente.', 35, null, 14);
+insert into movimiento values(156, 'Polución', 20, 70, 'Causa daño y tiene una probabilidad del 40% de envenar al objetivo.', 20, 'Envenenar al objetivo', 14);
+insert into movimiento values(157, 'Polvo veneno', 0, 75, 'Envenena al objetivo.', 35, null, 14);
+insert into movimiento values(158, 'Resuduos', 65, 100, 'Causa daño y tiene una probabilidad del 30% de envenenar al objetivo.', 20, 'Envenenar al objetivo', 14);
+insert into movimiento values(159, 'Tóxico', 0, 85, 'provoca un grave envenenamiento que se agrava con el paso de los turnos.', 10, null, 14);
+insert into movimiento values(160, 'Ataque aéreo', 140, 90, 'Se prepara durante el primer turno. En el segundo turno causa daño al objetivo.', 5, null, 15);
+insert into movimiento values(161, 'Ataque ala', 35, 100, 'Causa daño.', 35, null, 15);
+insert into movimiento values(162, 'Movimiento espejo', 0, 0, 'Utiliza el último ataque usado que haya tenido al usuario por objetivo. ', 20, null, 15);
+insert into movimiento values(163, 'Ataque aéreo', 140, 90, 'Se prepara durante el primer turno. En el segundo turno causa daño al objetivo.', 5, null, 15);
+insert into movimiento values(164, 'Pico taladro', 80, 100, 'Causa daño.', 20, null, 15);
+insert into movimiento values(165, 'Picotazo', 35, 100, 'Causa daño.', 35, null, 15);
+insert into movimiento values(166, 'Vuelo', 140, 90, ' emplea dos turnos: en el primero, el Pokémon vuela muy alto, tanto que estará fuera del alcance de la mayoría de los movimientos. En el segundo turno ocurre la caída del vuelo, en la cual el Pokémon golpea al oponente, pero puede ser interrumpida de muchas maneras.', 15, null, 15);
 
 
-/*ejemplo insercion bulbasaur*/
+/*Tipos de aprendizaje*/
+insert into tipo_forma_aprendizaje values(1, 'MT');
+insert into tipo_forma_aprendizaje values(2, 'MO');
+insert into tipo_forma_aprendizaje values(3, 'Nivel');
+
+/*Forma aprendizaje*/
+insert into forma_aprendizaje values(1, 1);
+insert into forma_aprendizaje values(2, 1);
+insert into forma_aprendizaje values(3, 1);
+insert into forma_aprendizaje values(4, 1);
+insert into forma_aprendizaje values(5, 1);
+insert into forma_aprendizaje values(6, 1);
+insert into forma_aprendizaje values(7, 1);
+insert into forma_aprendizaje values(8, 1);
+insert into forma_aprendizaje values(9, 1);
+insert into forma_aprendizaje values(10, 1);
+insert into forma_aprendizaje values(11, 1);
+insert into forma_aprendizaje values(12, 1);
+insert into forma_aprendizaje values(13, 1);
+insert into forma_aprendizaje values(14, 1);
+insert into forma_aprendizaje values(15, 1);
+insert into forma_aprendizaje values(16, 1);
+insert into forma_aprendizaje values(17, 1);
+insert into forma_aprendizaje values(18, 1);
+insert into forma_aprendizaje values(19, 1);
+insert into forma_aprendizaje values(20, 1);
+insert into forma_aprendizaje values(21, 1);
+insert into forma_aprendizaje values(22, 1);
+insert into forma_aprendizaje values(23, 1);
+insert into forma_aprendizaje values(24, 1);
+insert into forma_aprendizaje values(25, 1);
+insert into forma_aprendizaje values(26, 1);
+insert into forma_aprendizaje values(27, 1);
+insert into forma_aprendizaje values(28, 1);
+insert into forma_aprendizaje values(29, 1);
+insert into forma_aprendizaje values(30, 1);
+insert into forma_aprendizaje values(31, 1);
+insert into forma_aprendizaje values(32, 1);
+insert into forma_aprendizaje values(33, 1);
+insert into forma_aprendizaje values(34, 1);
+insert into forma_aprendizaje values(35, 1);
+insert into forma_aprendizaje values(36, 1);
+insert into forma_aprendizaje values(37, 1);
+insert into forma_aprendizaje values(38, 1);
+insert into forma_aprendizaje values(39, 1);
+insert into forma_aprendizaje values(40, 1);
+insert into forma_aprendizaje values(41, 1);
+insert into forma_aprendizaje values(42, 1);
+insert into forma_aprendizaje values(43, 1);
+insert into forma_aprendizaje values(44, 1);
+insert into forma_aprendizaje values(45, 1);
+insert into forma_aprendizaje values(46, 1);
+insert into forma_aprendizaje values(47, 1);
+insert into forma_aprendizaje values(48, 1);
+insert into forma_aprendizaje values(49, 1);
+insert into forma_aprendizaje values(50, 1);
+insert into forma_aprendizaje values(51, 2);
+insert into forma_aprendizaje values(52, 2);
+insert into forma_aprendizaje values(53, 2);
+insert into forma_aprendizaje values(54, 2);
+insert into forma_aprendizaje values(55, 2);
+insert into forma_aprendizaje values(56, 3);
+insert into nivel_aprendizaje values(57, 3);
+insert into nivel_aprendizaje values(58, 3);
+insert into nivel_aprendizaje values(59, 3);
+insert into nivel_aprendizaje values(60, 3);
+insert into nivel_aprendizaje values(61, 3);
+insert into nivel_aprendizaje values(62, 3);
+insert into nivel_aprendizaje values(63, 3);
+insert into nivel_aprendizaje values(64, 3);
+insert into nivel_aprendizaje values(65, 3);
+insert into nivel_aprendizaje values(66, 3);
+insert into nivel_aprendizaje values(67, 3);
+insert into nivel_aprendizaje values(68, 3);
+insert into nivel_aprendizaje values(69, 3);
+insert into nivel_aprendizaje values(70, 3);
+insert into nivel_aprendizaje values(71, 3);
 
 
-insert into pokemon_tipo values (1,10);
+/*Nivel*/
+
+insert into nivel_aprendizaje values(56, 1);
+insert into nivel_aprendizaje values(57, 7);
+insert into nivel_aprendizaje values(58, 13);
+insert into nivel_aprendizaje values(59, 20);
+insert into nivel_aprendizaje values(60, 27);
+insert into nivel_aprendizaje values(61, 34);
+insert into nivel_aprendizaje values(62, 41);
+insert into nivel_aprendizaje values(63, 48);
+insert into nivel_aprendizaje values(64, 22);
+insert into nivel_aprendizaje values(65, 30);
+insert into nivel_aprendizaje values(66, 38);
+insert into nivel_aprendizaje values(67, 46);
+insert into nivel_aprendizaje values(68, 54);
+insert into nivel_aprendizaje values(69, 43);
+insert into nivel_aprendizaje values(70, 55);
+insert into nivel_aprendizaje values(71, 65);
+
+/*MT*/
+
+insert into MT values(1, 'MT01');
+insert into MT values(2, 'MT02');
+insert into MT values(3, 'MT03');
+insert into MT values(4, 'MT04');
+insert into MT values(5, 'MT05');
+insert into MT values(6, 'MT06');
+insert into MT values(7, 'MT07');
+insert into MT values(8, 'MT08');
+insert into MT values(9, 'MT09');
+insert into MT values(10, 'MT10');
+insert into MT values(11, 'MT11');
+insert into MT values(12, 'MT12');
+insert into MT values(13, 'MT13');
+insert into MT values(14, 'MT14');
+insert into MT values(15, 'MT15');
+insert into MT values(16, 'MT16');
+insert into MT values(17, 'MT17');
+insert into MT values(18, 'MT18');
+insert into MT values(19, 'MT19');
+insert into MT values(20, 'MT20');
+insert into MT values(21, 'MT21');
+insert into MT values(22, 'MT22');
+insert into MT values(23, 'MT23');
+insert into MT values(24, 'MT24');
+insert into MT values(25, 'MT25');
+insert into MT values(26, 'MT26');
+insert into MT values(27, 'MT27');
+insert into MT values(28, 'MT28');
+insert into MT values(29, 'MT29');
+insert into MT values(30, 'MT30');
+insert into MT values(31, 'MT31');
+insert into MT values(32, 'MT32');
+insert into MT values(33, 'MT33');
+insert into MT values(34, 'MT34');
+insert into MT values(35, 'MT35');
+insert into MT values(36, 'MT36');
+insert into MT values(37, 'MT37');
+insert into MT values(38, 'MT38');
+insert into MT values(39, 'MT39');
+insert into MT values(40, 'MT40');
+insert into MT values(41, 'MT41');
+insert into MT values(42, 'MT42');
+insert into MT values(43, 'MT43');
+insert into MT values(44, 'MT44');
+insert into MT values(45, 'MT45');
+insert into MT values(46, 'MT46');
+insert into MT values(47, 'MT47');
+insert into MT values(48, 'MT48');
+insert into MT values(49, 'MT49');
+insert into MT values(50, 'MT50');
+
+/*MO*/
+insert into MO values(51, 'MO01');
+insert into MO values(52, 'MO02');
+insert into MO values(53, 'MO03');
+insert into MO values(54, 'MO04');
+insert into MO values(55, 'MO05');
 
 
-insert into movimiento values(1, 'Placaje', 40, 100, 'Causa daño', 35, null);
-insert into movimiento values(2, 'Danza espada', 0, 100, 'Aumenta en dos niveles el ataque del usuario', 30, 'Subir ataque');
+/* pokemon aprende movimiento*/
+
+/*
+
+insert into tipo_forma_aprendizaje values(1, 'MT');
+insert into tipo_forma_aprendizaje values(2, 'MO');
+insert into tipo_forma_aprendizaje values(3, 'Nivel');
+
+*/
+
+/*Bulbasaur*/
+insert into pokemon_movimiento_forma values(1, 1, 56);
+insert into pokemon_movimiento_forma values(1, 85, 56);
+insert into pokemon_movimiento_forma values(1, 122, 57);
+insert into pokemon_movimiento_forma values(1, 125, 58);
+insert into pokemon_movimiento_forma values(1, 157, 59);
+insert into pokemon_movimiento_forma values(1, 124, 60);
+insert into pokemon_movimiento_forma values(1, 67, 61);
+insert into pokemon_movimiento_forma values(1, 129, 62);
+insert into pokemon_movimiento_forma values(1, 128, 63);
+insert into pokemon_movimiento_forma values(1, 2, 3);
+insert into pokemon_movimiento_forma values(1, 159, 6);
+insert into pokemon_movimiento_forma values(1, 82, 8);
+insert into pokemon_movimiento_forma values(1, 66, 9);
+insert into pokemon_movimiento_forma values(1, 73, 10);
+insert into pokemon_movimiento_forma values(1, 79, 20);
+insert into pokemon_movimiento_forma values(1, 126, 21);
+insert into pokemon_movimiento_forma values(1, 128, 22);
+insert into pokemon_movimiento_forma values(1, 94, 31);
+insert into pokemon_movimiento_forma values(1, 72, 32);
+insert into pokemon_movimiento_forma values(1, 143, 33);
+insert into pokemon_movimiento_forma values(1, 118, 34);
+insert into pokemon_movimiento_forma values(1, 135, 44);
+insert into pokemon_movimiento_forma values(1, 114, 50);
+insert into pokemon_movimiento_forma values(1, 64, 51);
+
+/*Ivisaur*/
+insert into pokemon_movimiento_forma values(2, 1, 56);
+insert into pokemon_movimiento_forma values(2, 85, 56);
+insert into pokemon_movimiento_forma values(2, 122, 56);
+insert into pokemon_movimiento_forma values(2, 122, 57);
+insert into pokemon_movimiento_forma values(2, 125, 58);
+insert into pokemon_movimiento_forma values(2, 157, 64);
+insert into pokemon_movimiento_forma values(2, 124, 65);
+insert into pokemon_movimiento_forma values(2, 67, 66);
+insert into pokemon_movimiento_forma values(2, 129, 67);
+insert into pokemon_movimiento_forma values(2, 128, 68);
+insert into pokemon_movimiento_forma values(2, 2, 3);
+insert into pokemon_movimiento_forma values(2, 159, 6);
+insert into pokemon_movimiento_forma values(2, 82, 8);
+insert into pokemon_movimiento_forma values(2, 66, 9);
+insert into pokemon_movimiento_forma values(2, 73, 10);
+insert into pokemon_movimiento_forma values(2, 79, 20);
+insert into pokemon_movimiento_forma values(2, 126, 21);
+insert into pokemon_movimiento_forma values(2, 128, 22);
+insert into pokemon_movimiento_forma values(2, 94, 31);
+insert into pokemon_movimiento_forma values(2, 72, 32);
+insert into pokemon_movimiento_forma values(2, 143, 33);
+insert into pokemon_movimiento_forma values(2, 118, 34);
+insert into pokemon_movimiento_forma values(2, 135, 44);
+insert into pokemon_movimiento_forma values(2, 114, 50);
+insert into pokemon_movimiento_forma values(2, 64, 51);
+
+/*Venasaur*/
+insert into pokemon_movimiento_forma values(3, 1, 56);
+insert into pokemon_movimiento_forma values(3, 85, 56);
+insert into pokemon_movimiento_forma values(3, 122, 56);
+insert into pokemon_movimiento_forma values(3, 122, 57);
+insert into pokemon_movimiento_forma values(3, 125, 56);
+insert into pokemon_movimiento_forma values(3, 125, 58);
+insert into pokemon_movimiento_forma values(3, 157, 64);
+insert into pokemon_movimiento_forma values(3, 124, 65);
+insert into pokemon_movimiento_forma values(3, 67, 69);
+insert into pokemon_movimiento_forma values(3, 129, 70);
+insert into pokemon_movimiento_forma values(3, 128, 71);
+insert into pokemon_movimiento_forma values(3, 2, 3);
+insert into pokemon_movimiento_forma values(3, 159, 6);
+insert into pokemon_movimiento_forma values(3, 82, 8);
+insert into pokemon_movimiento_forma values(3, 66, 9);
+insert into pokemon_movimiento_forma values(3, 73, 10);
+insert into pokemon_movimiento_forma values(3, 88, 15);
+insert into pokemon_movimiento_forma values(3, 79, 20);
+insert into pokemon_movimiento_forma values(3, 126, 21);
+insert into pokemon_movimiento_forma values(3, 128, 22);
+insert into pokemon_movimiento_forma values(3, 94, 31);
+insert into pokemon_movimiento_forma values(3, 72, 32);
+insert into pokemon_movimiento_forma values(3, 143, 33);
+insert into pokemon_movimiento_forma values(3, 118, 34);
+insert into pokemon_movimiento_forma values(3, 135, 44);
+insert into pokemon_movimiento_forma values(3, 114, 50);
+insert into pokemon_movimiento_forma values(3, 64, 51);
 
 
-
+/**/
+/*
 insert into nivel_aprendizaje values(2, 1);
 
 
@@ -883,17 +1299,4 @@ insert into forma_evolucion values(1, -1);
 insert into nivel_evolucion values(1, 16);
 
 insert into pokemon_forma_evolucion values(1, 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
