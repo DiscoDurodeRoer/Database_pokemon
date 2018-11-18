@@ -106,7 +106,7 @@ Create table if not exists MT  (
 
 Create table if not exists MO  ( 
 	id_forma_aprendizaje int primary key, 
-    MT varchar(5),
+    MO varchar(5),
     foreign key(id_forma_aprendizaje) references forma_aprendizaje(id_forma_aprendizaje)
 );
 
@@ -1258,6 +1258,8 @@ insert into forma_aprendizaje values(68, 3);
 insert into forma_aprendizaje values(69, 3);
 insert into forma_aprendizaje values(70, 3);
 insert into forma_aprendizaje values(71, 3);
+insert into forma_aprendizaje values(72, 3);
+insert into forma_aprendizaje values(73, 3);
 
 
 /*Nivel*/
@@ -1278,6 +1280,8 @@ insert into nivel_aprendizaje values(68, 54);
 insert into nivel_aprendizaje values(69, 43);
 insert into nivel_aprendizaje values(70, 55);
 insert into nivel_aprendizaje values(71, 65);
+insert into nivel_aprendizaje values(72, 9);
+insert into nivel_aprendizaje values(73, 15);
 
 /*MT*/
 
@@ -1424,19 +1428,37 @@ insert into pokemon_movimiento_forma values(3, 135, 44);
 insert into pokemon_movimiento_forma values(3, 114, 50);
 insert into pokemon_movimiento_forma values(3, 64, 51);
 
+insert into pokemon_movimiento_forma values(4, 49, 56);
+insert into pokemon_movimiento_forma values(4, 85, 56);
+insert into pokemon_movimiento_forma values(4, 26, 72);
+insert into pokemon_movimiento_forma values(4, 90, 73);
+insert into pokemon_movimiento_forma values(4, 79, 64);
+insert into pokemon_movimiento_forma values(4, 65, 65);
+insert into pokemon_movimiento_forma values(4, 28, 66);
+insert into pokemon_movimiento_forma values(4, 27, 67);
+insert into pokemon_movimiento_forma values(4, 92, 1);
+insert into pokemon_movimiento_forma values(4, 2, 3);
+insert into pokemon_movimiento_forma values(4, 91, 5);
+insert into pokemon_movimiento_forma values(4, 159, 6);
+insert into pokemon_movimiento_forma values(4, 82, 8);
+insert into pokemon_movimiento_forma values(4, 66, 9);
+insert into pokemon_movimiento_forma values(4, 73, 10);
+insert into pokemon_movimiento_forma values(4, 44, 17);
+insert into pokemon_movimiento_forma values(4, 37, 18);
+insert into pokemon_movimiento_forma values(4, 39, 19);
+insert into pokemon_movimiento_forma values(4, 79, 20);
+insert into pokemon_movimiento_forma values(4, 16, 23);
+insert into pokemon_movimiento_forma values(4, 147, 28);
+insert into pokemon_movimiento_forma values(4, 94, 31);
+insert into pokemon_movimiento_forma values(4, 72, 32);
+insert into pokemon_movimiento_forma values(4, 143, 33);
+insert into pokemon_movimiento_forma values(4, 118, 34);
+insert into pokemon_movimiento_forma values(4, 29, 38);
+insert into pokemon_movimiento_forma values(4, 103, 39);
+insert into pokemon_movimiento_forma values(4, 58, 40);
+insert into pokemon_movimiento_forma values(4, 135, 44);
+insert into pokemon_movimiento_forma values(4, 18, 45);
+insert into pokemon_movimiento_forma values(4, 64, 51);
+insert into pokemon_movimiento_forma values(4, 78, 54);
 
-/**/
-/*
-insert into nivel_aprendizaje values(2, 1);
 
-
-
-insert into pokemon_movimiento_formaforma_evolucion values(1, 1, 2);
-insert into pokemon_movimiento_forma values(1, 2, 1);
-
-
-insert into forma_evolucion values(1, -1);
-insert into nivel_evolucion values(1, 16);
-
-insert into pokemon_forma_evolucion values(1, 1);
-*/
