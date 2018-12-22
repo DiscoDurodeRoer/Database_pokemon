@@ -30,28 +30,28 @@ drop table if exists pokemon;
 
 Create table if not exists pokemon  (
 	numero_pokedex int primary key AUTO_INCREMENT,
-    nombre varchar(15),
-    peso real,
-    altura real
+    nombre varchar(15) not null,
+    peso real not null,
+    altura real not null
 );
 
 Create table if not exists tipo_ataque  (
 	id_tipo_ataque int primary key AUTO_INCREMENT,
-	tipo varchar(8)
+	tipo varchar(8) not null
 );
 
 
 Create table if not exists tipo (
 	id_tipo int primary key AUTO_INCREMENT, 
-    nombre varchar(10),
-    id_tipo_ataque int,
+    nombre varchar(10) not null,
+    id_tipo_ataque int not null,
 	foreign key (id_tipo_ataque) references tipo_ataque(id_tipo_ataque)
 );
  
  
 Create table if not exists pokemon_tipo  (
-	numero_pokedex int,
-    id_tipo int,
+	numero_pokedex int not null,
+    id_tipo int not null,
     primary key(numero_pokedex, id_tipo),
     foreign key (numero_pokedex) references pokemon(numero_pokedex),
     foreign key (id_tipo) references tipo(id_tipo)
@@ -59,68 +59,65 @@ Create table if not exists pokemon_tipo  (
 
 Create table if not exists estadisticas_base  (
 	numero_pokedex int primary key,
-    ps int,
-    ataque int,
-    defensa int,
-    especial int,
-    velocidad int,
+    ps int not null,
+    ataque int not null,
+    defensa int not null,
+    especial int not null,
+    velocidad int not null,
 	foreign key (numero_pokedex) references pokemon(numero_pokedex)
 );
 
-
 Create table if not exists movimiento  (
 	id_movimiento int primary key AUTO_INCREMENT,
-    nombre varchar(20),
-    potencia int,
-    precision_mov int,
-    descripcion varchar(500),
-    pp int,
-    efecto_secundario varchar(45)
+    nombre varchar(20) not null,
+    potencia int not null,
+    precision_mov int not null,
+    descripcion varchar(500) not null,
+    pp int not null
 );
 
 Create table if not exists efecto_secundario  (
 	id_efecto_secundario int primary key,
-    efecto_secundario varchar(30)
+    efecto_secundario varchar(30) not null
 );
-
 
 Create table if not exists movimiento_efecto_secundario  (
 	id_movimiento int,
     id_efecto_secundario int,
-    probabilidad real, 
+    probabilidad real not null, 
     primary key (id_movimiento, id_efecto_secundario),
     foreign key (id_movimiento) references movimiento(id_movimiento),
     foreign key (id_efecto_secundario) references efecto_secundario(id_efecto_secundario)
 );
 
+Create table if not exists tipo_forma_aprendizaje  (
+	id_tipo_aprendizaje int primary key AUTO_INCREMENT,
+    tipo_aprendizaje varchar(20) not null
+);
+
 Create table if not exists forma_aprendizaje  (
 	id_forma_aprendizaje int primary key AUTO_INCREMENT,
-    tipo_aprendizaje int
+    id_tipo_aprendizaje int not null,
+    foreign key (id_tipo_aprendizaje) references tipo_forma_aprendizaje(id_tipo_aprendizaje)
 );
 
 Create table if not exists MT  ( 
 	id_forma_aprendizaje int primary key, 
-    MT varchar(5),
+    MT varchar(5) not null,
     foreign key(id_forma_aprendizaje) references forma_aprendizaje(id_forma_aprendizaje)
 );
 
 Create table if not exists MO  ( 
 	id_forma_aprendizaje int primary key, 
-    MO varchar(5),
+    MO varchar(5) not null,
     foreign key(id_forma_aprendizaje) references forma_aprendizaje(id_forma_aprendizaje)
 );
 
 Create table if not exists nivel_aprendizaje  ( 
 	id_forma_aprendizaje int primary key, 
-    nivel int,
+    nivel int not null,
     foreign key(id_forma_aprendizaje) references forma_aprendizaje(id_forma_aprendizaje)
 );
-
-Create table if not exists tipo_forma_aprendizaje  (
-	id_tipo_aprendizaje int primary key AUTO_INCREMENT,
-    tipo_aprendizaje varchar(20)
-);
-
 
 Create table if not exists pokemon_movimiento_forma  (
 	numero_pokedex int,
@@ -132,23 +129,28 @@ Create table if not exists pokemon_movimiento_forma  (
     foreign key (id_forma_aprendizaje) references forma_aprendizaje(id_forma_aprendizaje)
 );
 
+ Create table if not exists tipo_evolucion  (
+	id_tipo_evolucion int primary key,
+    tipo_evolucion varchar(15) not null
+);
 
  Create table if not exists forma_evolucion  (
 	id_forma_evolucion int primary key,
-    tipo_evolucion int
+    tipo_evolucion int not null,
+	foreign key (tipo_evolucion) references tipo_evolucion(id_tipo_evolucion)
 );
 
  Create table if not exists evoluciona_de  (
-	pokemon int,
+	pokemon_evolucionado int,
     pokemon_origen int,
-	primary key(pokemon, pokemon_origen),
+	primary key(pokemon_evolucionado, pokemon_origen),
     foreign key (pokemon) references pokemon(numero_pokedex),
     foreign key (pokemon_origen) references pokemon(numero_pokedex)
 );
 
 Create table if not exists tipo_piedra  (
 	id_tipo_piedra int primary key,
-    nombre_piedra varchar(20)
+    nombre_piedra varchar(20) not null
 );
 
 Create table if not exists piedra  (
@@ -160,15 +162,9 @@ Create table if not exists piedra  (
 
 Create table if not exists nivel_evolucion  (
 	id_forma_evolucion int primary key,
-    nivel int,
+    nivel int not null,
     foreign key (id_forma_evolucion) references forma_evolucion(id_forma_evolucion)
 );
-
- Create table if not exists tipo_evolucion  (
-	id_tipo_evolucion int primary key,
-    tipo_evolucion varchar(15)
-);
-
 
 Create table if not exists pokemon_forma_evolucion  (
 	numero_pokedex int,
@@ -359,6 +355,7 @@ insert into pokemon values (151, 'Mew', 4,0.4);
 /* Evoluciona de */
 insert into evoluciona_de values(2,1);
 insert into evoluciona_de values(3,2);
+insert into evoluciona_de values(5,4);
 insert into evoluciona_de values(5,6);
 insert into evoluciona_de values(6,5);
 insert into evoluciona_de values(8,7);
@@ -398,6 +395,7 @@ insert into evoluciona_de values(65,64);
 insert into evoluciona_de values(67,66);
 insert into evoluciona_de values(68,67);
 insert into evoluciona_de values(70,69);
+insert into evoluciona_de values(71,70);		
 insert into evoluciona_de values(73,72);
 insert into evoluciona_de values(75,74);
 insert into evoluciona_de values(76,75);
@@ -808,6 +806,7 @@ insert into tipo_piedra values (3,'Piedra agua');
 insert into tipo_piedra values (4,'Piedra lunar');
 insert into tipo_piedra values (5,'Piedra hoja');
 
+
 -- Tipo evolucion
 
 insert into tipo_evolucion values (1,'Nivel');
@@ -817,43 +816,34 @@ insert into tipo_evolucion values (3,'Intercambio');
 -- Formas de evolucion
 
 insert into forma_evolucion values (1, 3);
-insert into forma_evolucion values (2, 1);
-insert into forma_evolucion values (3, 1);
-insert into forma_evolucion values (4, 1);
-insert into forma_evolucion values (5, 2);
-insert into forma_evolucion values (6, 2);
-insert into forma_evolucion values (7, 2);
-insert into forma_evolucion values (8, 2);
-insert into forma_evolucion values (9, 2);
-insert into forma_evolucion values (10, 2);
-insert into forma_evolucion values (11, 2);
-insert into forma_evolucion values (12, 2);
-insert into forma_evolucion values (13, 1);
-insert into forma_evolucion values (14, 2);
-insert into forma_evolucion values (15, 1);
-insert into forma_evolucion values (16, 2);
-insert into forma_evolucion values (17, 2);
-insert into forma_evolucion values (18, 2);
-insert into forma_evolucion values (19, 2);
-insert into forma_evolucion values (20, 2);
-insert into forma_evolucion values (21, 2);
-insert into forma_evolucion values (22, 2);
-insert into forma_evolucion values (23, 2);
-insert into forma_evolucion values (24, 2);
-insert into forma_evolucion values (25, 2);
-insert into forma_evolucion values (26, 2);
-insert into forma_evolucion values (27, 2);
-insert into forma_evolucion values (28, 2);
-insert into forma_evolucion values (29, 2);
-
-
--- Formas de evolucion piedras
-
-insert into piedra values (2, 1);
-insert into piedra values (3, 2);
-insert into piedra values (4, 3);
-insert into piedra values (13, 4);
-insert into piedra values (15, 5);
+insert into forma_evolucion values (2, 2);
+insert into forma_evolucion values (3, 2);
+insert into forma_evolucion values (4, 2);
+insert into forma_evolucion values (5, 1);
+insert into forma_evolucion values (6, 1);
+insert into forma_evolucion values (7, 1);
+insert into forma_evolucion values (8, 1);
+insert into forma_evolucion values (9, 1);
+insert into forma_evolucion values (10, 1);
+insert into forma_evolucion values (11, 1);
+insert into forma_evolucion values (12, 1);
+insert into forma_evolucion values (13, 2);
+insert into forma_evolucion values (14, 1);
+insert into forma_evolucion values (15, 2);
+insert into forma_evolucion values (16, 1);
+insert into forma_evolucion values (17, 1);
+insert into forma_evolucion values (18, 1);
+insert into forma_evolucion values (19, 1);
+insert into forma_evolucion values (20, 1);
+insert into forma_evolucion values (21, 1);
+insert into forma_evolucion values (22, 1);
+insert into forma_evolucion values (23, 1);
+insert into forma_evolucion values (24, 1);
+insert into forma_evolucion values (25, 1);
+insert into forma_evolucion values (26, 1);
+insert into forma_evolucion values (27, 1);
+insert into forma_evolucion values (28, 1);
+insert into forma_evolucion values (29, 1);
 
 -- Formas de evolucion nivel
 
@@ -881,6 +871,14 @@ insert into nivel_evolucion values (27, 35);
 insert into nivel_evolucion values (28, 42);
 insert into nivel_evolucion values (29, 55);
 
+-- Formas de evolucion piedras
+
+insert into piedra values (2, 1);
+insert into piedra values (3, 2);
+insert into piedra values (4, 3);
+insert into piedra values (13, 4);
+insert into piedra values (15, 5);
+
 -- Formas de evolucion pokemon
 
 insert into pokemon_forma_evolucion values (1, 7);
@@ -897,7 +895,7 @@ insert into pokemon_forma_evolucion values (16, 8);
 insert into pokemon_forma_evolucion values (17, 12);
 insert into pokemon_forma_evolucion values (19, 9);
 insert into pokemon_forma_evolucion values (21, 9);
-insert into pokemon_forma_evolucion values (13, 10);
+insert into pokemon_forma_evolucion values (23, 10);
 insert into pokemon_forma_evolucion values (25, 2);
 insert into pokemon_forma_evolucion values (27, 10);
 insert into pokemon_forma_evolucion values (29, 8);
