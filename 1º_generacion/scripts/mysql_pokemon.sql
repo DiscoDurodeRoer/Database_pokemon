@@ -4512,7 +4512,6 @@ insert into pokemon_movimiento_forma values(112, 52, 56);
 insert into pokemon_movimiento_forma values(112, 98, 56);
 insert into pokemon_movimiento_forma values(112, 98, 65);
 insert into pokemon_movimiento_forma values(112, 63, 56);
-insert into pokemon_movimiento_forma values(112, 52, 56);
 insert into pokemon_movimiento_forma values(112, 89, 81);
 insert into pokemon_movimiento_forma values(112, 52, 96);
 insert into pokemon_movimiento_forma values(112, 97, 63);
