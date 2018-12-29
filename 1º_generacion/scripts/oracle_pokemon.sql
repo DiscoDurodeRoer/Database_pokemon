@@ -73,7 +73,7 @@ Create table  pok_movimiento  (
     descripcion varchar2(500) not null,
     pp int not null,
     id_tipo int not null,
-    prioridad int not null default 0,
+    prioridad int not null,
 	foreign key (id_tipo) references pok_tipo(id_tipo)
 );
 
@@ -532,7 +532,7 @@ insert into pok_pokemon_tipo values (71,10);
 insert into pok_pokemon_tipo values (71,14);
 insert into pok_pokemon_tipo values (72,1);
 insert into pok_pokemon_tipo values (72,14);
-insert into pok_pokemon_tipo values (73,2);
+insert into pok_pokemon_tipo values (73,1);
 insert into pok_pokemon_tipo values (73,14);
 insert into pok_pokemon_tipo values (74,12);
 insert into pok_pokemon_tipo values (74,13);
@@ -2013,7 +2013,7 @@ insert into pok_pokemon_movimiento_forma values(24, 114, 50);
 insert into pok_pokemon_movimiento_forma values(24, 78, 54);
 
 insert into pok_pokemon_movimiento_forma values(25, 17, 56);
-insert into pok_pokemon_movimiento_forma values(25, 89, 56);
+insert into pok_pokemon_movimiento_forma values(25, 85, 56);
 insert into pok_pokemon_movimiento_forma values(25, 18, 72);
 insert into pok_pokemon_movimiento_forma values(25, 53, 87);
 insert into pok_pokemon_movimiento_forma values(25, 103, 90);
@@ -5692,3 +5692,33 @@ insert into pok_pokemon_movimiento_forma values(151, 10, 53);
 insert into pok_pokemon_movimiento_forma values(151, 78, 54);
 insert into pok_pokemon_movimiento_forma values(151, 69, 55);
 
+
+-- Vistas
+
+create or replace view pokemon_evolucion_piedra as
+select distinct p.numero_pokedex, p.nombre
+from pok_pokemon p, pok_pokemon_forma_evolucion pfe, 
+pok_forma_evolucion fe, pok_tipo_evolucion te
+where p.numero_pokedex = pfe.numero_pokedex 
+and pfe.id_forma_evolucion = fe.id_forma_evolucion
+and fe.tipo_evolucion = te.id_tipo_evolucion
+and lower(te.tipo_evolucion) = 'piedra';
+
+create or replace view pokemon_no_evolucionan as
+select p.numero_pokedex, p.nombre
+from pok_pokemon p, pok_evoluciona_de ev
+where p.numero_pokedex = ev.pokemon_evolucionado
+and not exists (select pokemon_origen from pok_evoluciona_de where pokemon_origen = p.numero_pokedex)
+union
+select p.numero_pokedex, p.nombre
+from pok_pokemon p
+where not exists (select * 
+                    from pok_evoluciona_de 
+                    where pokemon_origen = p.numero_pokedex or pokemon_evolucionado = p.numero_pokedex);
+
+create or replace view cantidad_tipo_pokemon as
+select t.nombre as tipo, count(*) as cantidad
+from pok_pokemon p, pok_pokemon_tipo pt, pok_tipo t
+where p.numero_pokedex = pt.numero_pokedex
+and pt.id_tipo = t.id_tipo
+group by t.nombre;

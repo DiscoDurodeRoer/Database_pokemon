@@ -533,7 +533,7 @@ insert into pokemon_tipo values (71,10);
 insert into pokemon_tipo values (71,14);
 insert into pokemon_tipo values (72,1);
 insert into pokemon_tipo values (72,14);
-insert into pokemon_tipo values (73,2);
+insert into pokemon_tipo values (73,1);
 insert into pokemon_tipo values (73,14);
 insert into pokemon_tipo values (74,12);
 insert into pokemon_tipo values (74,13);
@@ -5692,3 +5692,65 @@ insert into pokemon_movimiento_forma values(151, 10, 53);
 insert into pokemon_movimiento_forma values(151, 78, 54);
 insert into pokemon_movimiento_forma values(151, 69, 55);
 
+-- Vistas
+
+create or replace view pokemon_evolucion_piedra as
+select distinct p.numero_pokedex, p.nombre
+from pokemon p, pokemon_forma_evolucion pfe, 
+forma_evolucion fe, tipo_evolucion te
+where p.numero_pokedex = pfe.numero_pokedex 
+and pfe.id_forma_evolucion = fe.id_forma_evolucion
+and fe.tipo_evolucion = te.id_tipo_evolucion
+and lower(te.tipo_evolucion) = 'piedra';
+
+create or replace view pokemon_no_evolucionan as
+select p.numero_pokedex, p.nombre
+from pokemon p, evoluciona_de ev
+where p.numero_pokedex = ev.pokemon_evolucionado
+and not exists (select pokemon_origen from evoluciona_de where pokemon_origen = p.numero_pokedex)
+union
+select p.numero_pokedex, p.nombre
+from pokemon p
+where not exists (select * 
+                    from evoluciona_de 
+                    where pokemon_origen = p.numero_pokedex or pokemon_evolucionado = p.numero_pokedex);
+
+create or replace view cantidad_tipo_pokemon as
+select t.nombre as tipo, count(*) as cantidad
+from pokemon p, pokemon_tipo pt, tipo t
+where p.numero_pokedex = pt.numero_pokedex
+and pt.id_tipo = t.id_tipo
+group by t.nombre;
+
+-- Procedimientos y funciones
+
+drop procedure if exists muestraPokemonByTipo;
+drop procedure if exists muestraPokemonByTipos;
+
+delimiter $$
+
+create procedure muestraPokemonByTipo(p_tipo varchar(10))
+begin
+
+    select p.nombre
+    from pokemon p, pokemon_tipo pt, tipo t
+    where p.numero_pokedex = pt.numero_pokedex and pt.id_tipo=t.id_tipo
+    and lower(t.nombre) = trim(lower(p_tipo));
+    
+end$$
+
+create procedure muestraPokemonByTipos(p_tipo1 varchar(10), p_tipo2 varchar(10))
+begin
+
+    select nombre
+    from pokemon
+    where numero_pokedex in (select numero_pokedex
+                            from pokemon_tipo pt, tipo t
+                            where pt.id_tipo=t.id_tipo and lower(t.nombre)=lower(trim(p_tipo1)))
+    and numero_pokedex in (select numero_pokedex
+                            from pokemon_tipo pt, tipo t
+                            where pt.id_tipo=t.id_tipo and lower(t.nombre)=lower(trim(p_tipo2)));
+    
+end$$
+
+delimiter ;
