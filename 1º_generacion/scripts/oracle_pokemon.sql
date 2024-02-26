@@ -28,20 +28,20 @@ drop table  pok_pokemon;
 
 Create table  pok_pokemon  (
 	numero_pokedex int primary key ,
-    nombre varchar2(15) not null,
+    nombre varchar(15) not null,
     peso real not null,
     altura real not null
 );
 
 Create table  pok_tipo_ataque  (
 	id_tipo_ataque int primary key ,
-	tipo varchar2(8) not null
+	tipo varchar(8) not null
 );
 
 
 Create table  pok_tipo (
 	id_tipo int primary key , 
-    nombre varchar2(10) not null,
+    nombre varchar(10) not null,
     id_tipo_ataque int not null,
 	foreign key (id_tipo_ataque) references pok_tipo_ataque(id_tipo_ataque)
 );
@@ -67,7 +67,7 @@ Create table  pok_estadisticas_base  (
 
 Create table  pok_movimiento  (
 	id_movimiento int primary key ,
-    nombre varchar2(20) not null,
+    nombre varchar(20) not null,
     potencia int not null,
     precision_mov int not null,
     descripcion varchar2(500) not null,
@@ -151,7 +151,7 @@ Create table  pok_pokemon_movimiento_forma  (
 
 Create table  pok_tipo_piedra  (
 	id_tipo_piedra int primary key,
-    nombre_piedra varchar2(20) not null
+    nombre_piedra varchar(20) not null
 );
 
 Create table  pok_piedra  (
